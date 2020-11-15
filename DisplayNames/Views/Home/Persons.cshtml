@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Persons";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if (ViewBag.Caching)
+{
+    <div class="alert alert-primary" role="alert">
+        Data is loaded from cache!
+    </div>
+}
+
+<div class="container">
+    <table class="table table-sm table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Identifier</th>
+                <th scope="col">Email</th>
+                <th scope="col">Website</th>
+                <th scope="col">City</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td scope="row">@person.FirstName @person.LastName</td>
+                    <td scope="row"><small>@person.PersonId</small></td>
+                    <td scope="row">@person.Email</td>
+                    <td scope="row"><a href="@person.Website">@person.Website.Split("//")[1]</a></td>
+                    <td scope="row">@person.City</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
